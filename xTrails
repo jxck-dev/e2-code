@@ -1,7 +1,15 @@
 @name xTrails
 @persist Trail:string Size V:string
 
+############
+## Config ##
+############
+
 Prefix = "."
+      
+####################################
+# DONT CHANGE ANYTHING BELOW THIS! #
+####################################
 
 runOnChat(1)
 
