@@ -1,0 +1,36 @@
+@name xAdminMode
+
+############
+## Config ##
+############
+
+Prefix = "."
+
+OnDuty_Job_Name = "Moderator On Duty"
+OnDuty_Job_CMD = "/modonduty"
+
+OffDuty_Job_CMD = "/citizen"
+   
+####################################
+# DONT CHANGE ANYTHING BELOW THIS! #
+####################################
+
+runOnChat(1)
+
+if(first()) {
+    setName("xAdminmode | v1 | By jxck")
+    printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Loaded.")
+}
+
+if(owner():lastSaid():explode(" ")[1,string] == Prefix+"admin" && chatClk(owner())) {
+    if(teamName(owner():team()) == OnDuty_Job_Name) {
+        concmd("say "+OffDuty_Job_CMD)
+        printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Adminmode Disabled.")
+    }
+    else {
+        concmd("say "+OnDuty_Job_CMD)
+        printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Adminmode Enabled")
+    }
+    hideChat(1)
+}
+
