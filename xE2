@@ -5,7 +5,7 @@
 ## Config ##
 ############
 
-Prefix = "/"
+Prefix = "."
       
 ####################################
 # DONT CHANGE ANYTHING BELOW THIS! #
