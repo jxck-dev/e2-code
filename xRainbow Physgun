@@ -1,0 +1,29 @@
+@name xRainbow Physgun
+@persist 
+
+####################################
+# DONT CHANGE ANYTHING BELOW THIS! #
+####################################
+
+interval(500)
+
+if(first()) {
+    runOnLast(1)
+    setName("xRainbow Physgun | v1 | By jxck")
+    printColor(vec(255,255,255),"[",vec(0,255,255),"xRainbow Physun",vec(255,255,255),"] Loaded.")
+}
+
+if(owner():weapon():type() == "weapon_physgun") {
+    interval(1)
+    owner():weapon():setColor(hsv2rgb((curtime()*200)%360,1,1))
+    owner():weapon():setMaterial("models/wireframe")
+}
+else {
+    owner():weapon():setColor(vec(255))
+    owner():weapon():setMaterial("")
+}
+
+if(last()) {
+    owner():weapon():setColor(vec(255))
+    owner():weapon():setMaterial("")
+}
