@@ -1,0 +1,75 @@
+@name xTrails
+@persist Trail:string Size V:string
+
+Prefix = "."
+
+runOnChat(1)
+
+if(first()) {
+    V = "v1"
+    setName("xTrails | "+V+" | By jxck")
+}
+
+O = owner()
+Commandline = O:lastSaid():explode(" ")
+Command = Commandline[1,string]:explode(Prefix)[2,string]
+
+if(chatClk(O) && Prefix == Commandline[1,string]:left(1)) {
+    if(Command == "trail") {
+        Trail = Commandline[2,string]
+        if(Trail != "") {
+            if(Trail == "love") {
+                owner():setTrails(Size,50,3,"trails/love",vec(255,255,255),255)
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Trail set to Love.")
+                Trail = "Love"
+            }
+            elseif(Trail == "smoke") {
+                owner():setTrails(Size,50,3,"trails/smoke",vec(255,255,255),255)
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Trail set to Smoke.")
+                Trail = "Smoke"
+            }
+            elseif(Trail == "physbeam") {
+                owner():setTrails(Size,50,3,"trails/physbeam",vec(255,255,255),255)
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Trail set to Physbeam.")
+                Trail = "Physbeam"
+            }
+            elseif(Trail == "tube") {
+                owner():setTrails(Size,50,3,"trails/tube",vec(255,255,255),255)
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Trail set to Tube.")
+                Trail = "Tube"
+            }
+            elseif(Trail == "eletcric") {
+                owner():setTrails(Size,50,3,"trails/eletcric",vec(255,255,255),255)
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Trail set to Eletcric.")
+                Trail = "Eletcric"
+            }
+            elseif(Trail == "plasma") {
+                owner():setTrails(Size,50,3,"trails/plasma",vec(255,255,255),255)
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Trail set to Plasma.")
+                Trail = "Plasma"
+            }
+            elseif(Trail == "lol") {
+                owner():setTrails(Size,50,3,"trails/lol",vec(255,255,255),255)
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Trail set to Lol.")
+                Trail = "Lol"
+            }
+            elseif(Trail == "clear") {
+            owner():setTrails(Size,50,3,"",vec(255,255,255),255)
+            printColor(vec(255,255,255),"[",vec(0,255,255),"xTrails",vec(255,255,255),"] ","Cleared Trail.")
+            }
+        }
+    }
+    if(Command == "help") {
+        printColor(vec(0,255,255),"xTrails",vec(255,255,255)," | "+V+" | By jxck")
+        print("--------------------")
+        print(Prefix+" trail love")
+        print(Prefix+" trail smoke")
+        print(Prefix+" trail physbeam")
+        print(Prefix+" trail tube")
+        print(Prefix+" trail eletcric")
+        print(Prefix+" trail plasma")
+        print(Prefix+" trail lol")
+        print(Prefix+" trail clear")
+    }
+    hideChat(1)
+}
