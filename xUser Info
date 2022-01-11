@@ -1,0 +1,46 @@
+@name xUser Info
+@persist 
+
+Prefix = "."
+
+if(first()) {
+    setName("xUser Info | v1 | By jxck")
+    runOnChat(1)
+    printColor(vec(255,255,255),"[",vec(0,255,255),"xUser Info",vec(255,255,255),"] ","Loaded.")
+    #print(vec(255,255,255),"[",vec(0,255,255),"xUser Info",vec(255,255,255),"] ","")
+}
+
+if(owner():lastSaid():explode(" ")[1,string] == Prefix+"userinfo" && chatClk(owner()) && owner():lastSaid():explode(" ")[2,string] != "") {
+    Ply = owner():lastSaid():explode(" ")[2,string]
+    if(findPlayerBySteamID(Ply):name() != "") {
+        PLY = findPlayerBySteamID(Ply)
+        print(" ")
+        printColor("User Info for player: ",teamColor(PLY:team()),PLY:name())
+        print("--------------------------")
+        print("SteamID: "+PLY:steamID())
+        print("HP/Armor: "+PLY:health()+"/"+PLY:armor())
+        print("Kills/Deaths: "+PLY:frags()+"/"+PLY:deaths())
+        print("Money: $"+PLY:money())
+        print("Job: "+teamName(PLY:team()))
+        print("Steam Proflie:")
+        print("https://steamcommunity.com/profiles/"+PLY:steamID64()+"/")
+    }
+    elseif(findPlayerByName(Ply):name() != "") {
+        PLY = findPlayerByName(Ply)
+        printColor("Info for ",teamColor(PLY:team()),PLY:name())
+        print(" ")
+        printColor("User Info for player: ",teamColor(PLY:team()),PLY:name())
+        print("--------------------------")
+        print("SteamID: "+PLY:steamID())
+        print("HP/Armor: "+PLY:health()+"/"+PLY:armor())
+        print("Kills/Deaths: "+PLY:frags()+"/"+PLY:deaths())
+        print("Money: $"+PLY:money())
+        print("Job: "+teamName(PLY:team()))
+        print("Steam Proflie:")
+        print("https://steamcommunity.com/profiles/"+PLY:steamID64()+"/")
+    }
+    else {
+        print("no ply")
+    }
+    hideChat(1)
+}
