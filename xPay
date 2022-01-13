@@ -1,0 +1,70 @@
+@name xPay
+@inputs 
+@outputs 
+@persist 
+@trigger 
+
+Prefix = "."
+
+if(first()) {
+    runOnChat(1)
+    setName("xPay | v1 | By jxck")
+    printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] ","Loaded.")
+}
+
+if(chatClk(owner()) && owner():lastSaid():explode(" ")[1,string]:left(1) == Prefix) {
+    Commandline = owner():lastSaid():explode(" ")
+    if(Commandline[1,string] == Prefix+"help") {
+        print(" ")
+        printColor(vec(0,255,255),"xPay Commands")
+        print("-----------------")
+        print(Prefix+"pay <user> <amount>")
+        print(Prefix+"request <user> <amount>")
+    }
+    if(Commandline[1,string] == Prefix+"pay") {
+        Ply = findPlayerByName(Commandline[2,string])
+        if(Ply:name() != "") {
+            Amount = Commandline[3,string]:toNumber()
+            if(Amount > 0) {
+                if(owner():money() > Amount) {
+                    moneyGive(Ply,Amount)
+                }
+                else {
+                    printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] ","You can not afford that.")
+                }
+            }
+            else {
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] ","Invalid Number")
+            }
+      }
+        else {
+            printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] ","Could not find player.")
+        }
+    }
+    if(Commandline[1,string] == Prefix+"request") {
+        Ply = findPlayerByName(Commandline[2,string])
+        if(Ply:name() != "") {
+            Amount = Commandline[3,string]:toNumber()
+            if(Amount > 0) {
+                if(Ply:money() > Amount) {
+                    moneyRequest(Ply,Amount)
+                    printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] ","Request sent to "+Ply:name()+".")
+                }
+                else {
+                    printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] "+Ply:name()+" cant afford that.")
+                }
+            }
+            else {
+                printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] ","Invalid Number")
+            }
+        }
+        else {
+            printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] ","Could not find player.")
+        }
+    }
+    hideChat(1)
+}
+
+if(moneyNoClk()) {
+    printColor(vec(255,255,255),"[",vec(0,255,255),"xPay",vec(255,255,255),"] "+moneyNoClkPlayer():name()+" denied your request.")
+}
