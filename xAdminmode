@@ -15,7 +15,7 @@ if(first()) {
    # DONT CHANGE ANYTHING BELOW THIS! #
    ####################################
    
-   setName("xAdminmode | v1 | By jxck")
+   setName("xAdminmode | v1.1 | By jxck")
 	printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Loaded.")
 	runOnChat(1)
 }
