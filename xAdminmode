@@ -1,36 +1,37 @@
 @name xAdminMode
-
-############
-## Config ##
-############
-
-Prefix = "."
-
-OnDuty_Job_Name = "Moderator On Duty"
-OnDuty_Job_CMD = "/modonduty"
-
-OffDuty_Job_CMD = "/citizen"
-   
-####################################
-# DONT CHANGE ANYTHING BELOW THIS! #
-####################################
-
-runOnChat(1)
+@persist Owner:entity [OnDuty_Job_Name OnDuty_Job_CMD OffDuty_Job_CMD Prefix]:string
 
 if(first()) {
-    setName("xAdminmode | v1 | By jxck")
-    printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Loaded.")
+
+   ############
+   ## Config ##
+   ############
+   
+   OnDuty_Job_Name = "Moderator On Duty"
+   OnDuty_Job_CMD = "/modonduty"
+   OffDuty_Job_CMD = "/citizen"
+   
+   ####################################
+   # DONT CHANGE ANYTHING BELOW THIS! #
+   ####################################
+   
+   setName("xAdminmode | v1.1 | By jxck")
+	printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Loaded.")
+	runOnChat(1)
 }
 
-if(owner():lastSaid():explode(" ")[1,string] == Prefix+"admin" && chatClk(owner())) {
-    if(teamName(owner():team()) == OnDuty_Job_Name) {
-        concmd("say "+OffDuty_Job_CMD)
-        printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Adminmode Disabled.")
-    }
-    else {
-        concmd("say "+OnDuty_Job_CMD)
-        printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Adminmode Enabled")
-    }
-    hideChat(1)
+if(chatClk(Owner)) {
+	local LastSaid = Owner:lastSaid()
+	local Team = teamName(Owner:team())
+	if (LastSaid:explode(" ")[1,string] == Prefix+"admin"){
+		hideChat(1)
+		if (Team == OnDuty_Job_Name) {
+			concmd("say "+OffDuty_Job_CMD)
+			printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Adminmode Disabled.")
+		}else{
+			concmd("say "+OnDuty_Job_CMD)
+			printColor(vec(255,255,255),"[",vec(0,255,255),"xAdminMode",vec(255,255,255),"] ","Adminmode Enabled")
+		}
+	}
 }
 
